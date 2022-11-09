@@ -1,21 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>me.small.ideplugin</id>
+    <id>me.small.dbClicker</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Ideplugin</name>
+    <name>dbClicker</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="smallp010@qq.com">Small</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    和hela一起用，点一下就可以添加字段，妈妈再也不用担心select的字段太多了
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -25,7 +24,13 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <applicationService
+                serviceImplementation="me.small.ideplugin.setting.UrlState"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="me.small.ideplugin.setting.UrlConfigurable"
+                id="me.small.ideplugin.setting.UrlConfigurable"
+                displayName="DbClicker: Set DB Info"/>
     </extensions>
     <actions>
         <action id="Test" class="me.small.ideplugin.SmallTest" text="popwindow" description="pop a window">
