@@ -31,6 +31,8 @@
                 instance="me.small.ideplugin.setting.UrlConfigurable"
                 id="me.small.ideplugin.setting.UrlConfigurable"
                 displayName="DbClicker: Set DB Info"/>
+        <toolWindow id="DBClickInfo" secondary="false" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="me.small.ideplugin.window.DBToolWindowFactory"/>
     </extensions>
     <actions>
         <action id="Test" class="me.small.ideplugin.SmallTest" text="popwindow" description="pop a window">
