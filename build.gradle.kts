@@ -27,6 +27,9 @@ intellij {
 
     plugins.set(listOf(/* Plugin Dependencies */))
 }
+dependencies {
+    implementation("org.postgresql:postgresql:42.5.0")
+}
 
 tasks {
     // Set the JVM compatibility versions

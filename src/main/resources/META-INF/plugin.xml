@@ -34,9 +34,4 @@
         <toolWindow id="DBClickInfo" secondary="false" icon="AllIcons.General.Modified" anchor="right"
                     factoryClass="me.small.ideplugin.window.DBToolWindowFactory"/>
     </extensions>
-    <actions>
-        <action id="Test" class="me.small.ideplugin.SmallTest" text="popwindow" description="pop a window">
-            <add-to-group group-id="ToolsMenu" anchor="before" relative-to-action="CreateLauncherScript"/>
-        </action>
-    </actions>
 </idea-plugin>
