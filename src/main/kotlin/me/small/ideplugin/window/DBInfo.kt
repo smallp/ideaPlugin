@@ -38,7 +38,9 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
         val data = set.dbInfo
         val res = DefaultMutableTreeNode("root")
         if (!clear) {
-            data.forEach { (k, v) ->
+            val sorted = data.keys.toSortedSet()
+            sorted.forEach { k ->
+                val v = data[k]!!
                 val item = DefaultMutableTreeNode(k)
                 v.forEach {
                     item.add(DefaultMutableTreeNode(it))
@@ -65,7 +67,7 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
             WriteCommandAction.runWriteCommandAction(
                 project
             ) {
-                document.insertString(start, "${table}.${col},\n")
+                document.insertString(start, "T_${table}.${col},")
             }
         }
     }
