@@ -15,7 +15,7 @@ class DBToolWindowFactory : ToolWindowFactory {
     }
 
     override fun isApplicable(project: Project): Boolean {
-        val setting = UrlState.getInstance()
+        val setting = UrlState.getInstance(project)
         return setting.url.isNotEmpty()
     }
 }

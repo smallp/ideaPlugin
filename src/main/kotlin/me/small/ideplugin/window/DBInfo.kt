@@ -19,7 +19,7 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
     private var panel1: JPanel? = null
     private var dbList: JTree? = null
     private var refresh: JButton? = null
-    private val set: UrlState = UrlState.getInstance()
+    private val set: UrlState = UrlState.getInstance(toolWindow.project)
 
     val content get() = panel1
 

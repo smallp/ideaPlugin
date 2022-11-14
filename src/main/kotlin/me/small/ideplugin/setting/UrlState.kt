@@ -1,15 +1,13 @@
 package me.small.ideplugin.setting
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
-import com.intellij.openapi.components.Storage
+import com.intellij.openapi.project.Project
 import com.intellij.util.xmlb.XmlSerializerUtil
 import java.sql.DriverManager
 
 @State(
-    name = "me.small.ideplugin.setting.UrlState",
-    storages = [Storage("SmallDBClicker.xml")]
+    name = "me.small.ideplugin.setting.UrlState"
 )
 class UrlState: PersistentStateComponent<UrlState> {
     var url: String = ""
@@ -18,8 +16,8 @@ class UrlState: PersistentStateComponent<UrlState> {
     var dbInfo: HashMap<String, ArrayList<String>> = HashMap()
 
     companion object {
-        fun getInstance(): UrlState {
-            return ApplicationManager.getApplication().getService(UrlState::class.java)
+        fun getInstance(poj: Project): UrlState {
+            return poj.getService(UrlState::class.java) ?: UrlState()
         }
     }
 
@@ -32,7 +30,6 @@ class UrlState: PersistentStateComponent<UrlState> {
         if (dbInfo.isEmpty()) {
             updateDb { }
         }
-        println(dbInfo)
     }
 
     fun updateDb(callback: () -> Unit) {

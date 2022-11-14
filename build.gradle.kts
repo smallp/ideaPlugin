@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "me.small"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 buildscript {
     repositories {
         maven("https://maven.aliyun.com/repository/central")

@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>dbClicker</name>
+    <name>DbClicker</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="smallp010@qq.com">Small</vendor>
@@ -24,9 +24,9 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService
+        <projectService
                 serviceImplementation="me.small.ideplugin.setting.UrlState"/>
-        <applicationConfigurable
+        <projectConfigurable
                 parentId="tools"
                 instance="me.small.ideplugin.setting.UrlConfigurable"
                 id="me.small.ideplugin.setting.UrlConfigurable"
