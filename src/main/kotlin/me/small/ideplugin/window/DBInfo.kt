@@ -52,13 +52,20 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
     }
 
     override fun mouseClicked(e: MouseEvent) {
-        if (e.clickCount == 2) {
+        if (e.clickCount % 2 == 0) {
             val res = dbList!!.getPathForLocation(e.x, e.y)?.path ?: return
-            if (res.size != 3) return
-            var table = res[1].toString()
-            var col = res[2].toString()
-            table = table.split(" ")[0].uppercase()
-            col = col.split(" ")[0].uppercase()
+            val str: String
+            if (res.size == 3) {
+                var table = res[1].toString()
+                var col = res[2].toString()
+                table = table.split(" ")[0].uppercase()
+                col = col.split(" ")[0].uppercase()
+                str = "T_${table}.${col},"
+            } else if (res.size == 2) {
+                var table = res[1].toString()
+                table = table.split(" ")[0].uppercase()
+                str = "T_${table}"
+            } else return
 
             val project: Project = toolWindow.project
             val editor: Editor = FileEditorManagerEx.getInstance(project).selectedTextEditor ?: return
@@ -67,7 +74,7 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
             WriteCommandAction.runWriteCommandAction(
                 project
             ) {
-                document.insertString(start, "T_${table}.${col},")
+                document.insertString(start, str)
             }
         }
     }
