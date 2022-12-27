@@ -9,7 +9,7 @@ import java.sql.DriverManager
 @State(
     name = "me.small.ideplugin.setting.UrlState"
 )
-class UrlState: PersistentStateComponent<UrlState> {
+class UrlState : PersistentStateComponent<UrlState> {
     var url: String = ""
     var user: String = ""
     var pwd: String = ""

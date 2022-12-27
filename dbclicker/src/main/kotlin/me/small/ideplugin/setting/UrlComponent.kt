@@ -46,7 +46,7 @@ class UrlComponent {
             .panel
     }
 
-    fun getPreferredFocusedComponent():JComponent{
+    fun getPreferredFocusedComponent(): JComponent {
         return _name
     }
 }

@@ -44,6 +44,6 @@ class UrlConfigurable(private val poj: Project) : Configurable {
     }
 
     override fun disposeUIResources() {
-        component=null
+        component = null
     }
 }
