@@ -13,8 +13,7 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[
-    Vision Info。直观展示当前依赖信息，可以快速查看依赖的readme链接。
+    <description><![CDATA[Vision Info. Used to work with vision. Display your dependents with version. <br><br>直观展示当前依赖信息，可以快速查看依赖的readme链接。
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -24,7 +23,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Vision" secondary="false" icon="AllIcons.General.Modified" anchor="right"
+        <toolWindow id="SeaMaid" secondary="false" icon="AllIcons.General.Modified" anchor="right"
                     factoryClass="me.small.vision.window.DBToolWindowFactory"/>
     </extensions>
 </idea-plugin>

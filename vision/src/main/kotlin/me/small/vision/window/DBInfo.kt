@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 import javax.swing.*
 import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.DefaultTreeCellRenderer
 import javax.swing.tree.DefaultTreeModel
 
 class DBInfo(private val set: VisionInfo) : MouseListener {
@@ -20,8 +21,10 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
     init {
         refresh?.addActionListener {
             set.parse()
-            drawTree(true)
+            drawTree()
         }
+        val render = dbList!!.cellRenderer as DefaultTreeCellRenderer
+        render.leafIcon = ImageIcon(this.javaClass.classLoader.getResource("leaf.png"))
         dbList!!.addMouseListener(this)
         drawTree()
         popupMenu = JPopupMenu()
@@ -35,19 +38,17 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
         popupMenu.add(readme)
     }
 
-    private fun drawTree(clear: Boolean = false) {
+    private fun drawTree() {
         val data = set.parsedData
         val res = DefaultMutableTreeNode("root")
-        if (!clear) {
-            val sorted = data.keys.toSortedSet()
-            sorted.forEach { k ->
-                val v = data[k]!!
-                val item = DefaultMutableTreeNode(k)
-                v.keys.sorted().forEach {
-                    item.add(DefaultMutableTreeNode(it))
-                }
-                res.add(item)
+        val sorted = data.keys.toSortedSet()
+        sorted.forEach { k ->
+            val v = data[k]!!
+            val item = DefaultMutableTreeNode(k)
+            v.keys.sorted().forEach {
+                item.add(DefaultMutableTreeNode("$it " + v[it]!!.version))
             }
+            res.add(item)
         }
         dbList!!.model = DefaultTreeModel(res, false)
     }
