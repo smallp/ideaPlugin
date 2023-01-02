@@ -1,6 +1,7 @@
 package me.small.vision.window
 
 import com.intellij.ide.BrowserUtil
+import me.small.vision.data.InfoPO
 import me.small.vision.data.VisionInfo
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
@@ -12,6 +13,7 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
     private var panel1: JPanel? = null
     private var dbList: JTree? = null
     private var refresh: JButton? = null
+    private var updateState: JLabel? = null
     private val popupMenu: JPopupMenu
     private var url = ""
 
@@ -28,6 +30,7 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
         drawTree()
         popupMenu = JPopupMenu()
         popupMenu.add(JMenuItem("name").apply { isEnabled = false })
+        popupMenu.addSeparator()
         popupMenu.add(JMenuItem("stable version").apply { isEnabled = false })
         popupMenu.add(JMenuItem("preview version").apply { isEnabled = false })
         popupMenu.add(JMenuItem("testing version").apply { isEnabled = false })
@@ -51,6 +54,9 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
             res.add(item)
         }
         dbList!!.model = DefaultTreeModel(res, false)
+
+        val update = set.isUpdate()
+        updateState!!.text = if (update) "当前自动更新依赖" else "当前已冻结依赖"
     }
 
     private fun openReadme() {
@@ -78,14 +84,14 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
         if (e.isPopupTrigger) {
             val res = dbList!!.getPathForLocation(e.x, e.y)?.path ?: return
             if (res.size != 3) return
-            val item = res[2].toString().split(" ")[0]
+            val item = ((res[2] as DefaultMutableTreeNode).userObject as InfoPO).name
             val model = set.parsedData[res[1].toString()]?.get(item) ?: return
             (popupMenu.getComponent(0) as JMenuItem).text = model.name
             model.otherVersion.forEachIndexed { index, s ->
-                (popupMenu.getComponent(index + 1) as JMenuItem).text = s.trim()
+                (popupMenu.getComponent(index + 2) as JMenuItem).text = s.trim()
             }
             url = model.readme
-            (popupMenu.getComponent(3) as JMenuItem).isEnabled = url.isNotEmpty()
+            (popupMenu.getComponent(5) as JMenuItem).isEnabled = url.isNotEmpty()
             popupMenu.show(e.component, e.x, e.y)
         }
     }

@@ -6,6 +6,7 @@ import java.util.regex.Pattern
 
 class VisionInfo(private val project: Project) {
     val parsedData = HashMap<String, HashMap<String, InfoPO>>()
+    private val visionConfig: Pattern = Pattern.compile(".?visionRefresh.+")
     fun haveFile(): Boolean {
         val fold = File(project.basePath, "gradle/catalogs")
         return fold.exists()
@@ -66,5 +67,21 @@ class VisionInfo(private val project: Project) {
             }
             parsedData[filename] = data
         }
+    }
+
+    fun isUpdate(): Boolean {
+        val config = File(project.basePath, "gradle.properties")
+        if (!config.exists()) return true
+        val line = getConfig(config.readText()) ?: return true
+        if (line.startsWith("#")) return true
+        val c = line.split("=")[1].trim()
+        return c != "false"
+    }
+
+    private fun getConfig(file: String): String? {
+        val match = visionConfig.matcher(file)
+        return if (match.find()) {
+            match.group()
+        } else null
     }
 }

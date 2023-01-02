@@ -23,6 +23,12 @@
               <text value="refresh"/>
             </properties>
           </component>
+          <component id="81a6a" class="javax.swing.JLabel" binding="updateState">
+            <constraints/>
+            <properties>
+              <text value="Label"/>
+            </properties>
+          </component>
         </children>
       </toolbar>
       <scrollpane id="b0d69">
