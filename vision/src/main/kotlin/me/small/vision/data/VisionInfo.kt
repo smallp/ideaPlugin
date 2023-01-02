@@ -25,6 +25,7 @@ class VisionInfo(private val project: Project) {
             var versions = ""
             var v = ""
             var nowV = ""
+            var time = ""
             file.readLines().let { t ->
                 val size = t.size
                 t.subList(5, size)
@@ -32,7 +33,7 @@ class VisionInfo(private val project: Project) {
                 when {
                     it.isBlank() -> {
                         if (name.isNotEmpty()) {
-                            data[name] = InfoPO(nowV, v, readme, versions.split(","))
+                            data[name] = InfoPO(nowV, v, readme, versions.split(","), name, time)
                             name = ""
                         }
                     }
@@ -47,6 +48,11 @@ class VisionInfo(private val project: Project) {
                         res.find()
                         v = res.group(1)
                         versions = res.group(2)
+                    }
+
+                    it.startsWith("# Update Time") -> {
+                        val res = it.split(":")
+                        time = res.subList(1, res.size).joinToString(":").trim()
                     }
 
                     it.startsWith("#") -> {}

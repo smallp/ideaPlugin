@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 import javax.swing.*
 import javax.swing.tree.DefaultMutableTreeNode
-import javax.swing.tree.DefaultTreeCellRenderer
 import javax.swing.tree.DefaultTreeModel
 
 class DBInfo(private val set: VisionInfo) : MouseListener {
@@ -23,11 +22,12 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
             set.parse()
             drawTree()
         }
-        val render = dbList!!.cellRenderer as DefaultTreeCellRenderer
-        render.leafIcon = ImageIcon(this.javaClass.classLoader.getResource("leaf.png"))
+        dbList!!.cellRenderer = MyTreeCellRenderer()
         dbList!!.addMouseListener(this)
+        dbList!!.isRootVisible = false
         drawTree()
         popupMenu = JPopupMenu()
+        popupMenu.add(JMenuItem("name").apply { isEnabled = false })
         popupMenu.add(JMenuItem("stable version").apply { isEnabled = false })
         popupMenu.add(JMenuItem("preview version").apply { isEnabled = false })
         popupMenu.add(JMenuItem("testing version").apply { isEnabled = false })
@@ -46,7 +46,7 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
             val v = data[k]!!
             val item = DefaultMutableTreeNode(k)
             v.keys.sorted().forEach {
-                item.add(DefaultMutableTreeNode("$it " + v[it]!!.version))
+                item.add(DefaultMutableTreeNode(v[it]))
             }
             res.add(item)
         }
@@ -80,8 +80,9 @@ class DBInfo(private val set: VisionInfo) : MouseListener {
             if (res.size != 3) return
             val item = res[2].toString().split(" ")[0]
             val model = set.parsedData[res[1].toString()]?.get(item) ?: return
+            (popupMenu.getComponent(0) as JMenuItem).text = model.name
             model.otherVersion.forEachIndexed { index, s ->
-                (popupMenu.getComponent(index) as JMenuItem).text = s.trim()
+                (popupMenu.getComponent(index + 1) as JMenuItem).text = s.trim()
             }
             url = model.readme
             (popupMenu.getComponent(3) as JMenuItem).isEnabled = url.isNotEmpty()
