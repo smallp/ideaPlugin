@@ -8,7 +8,8 @@ plugins {
 }
 
 dependencies {
-    implementation("org.postgresql:postgresql:42.5.0")
+    implementation("org.postgresql:postgresql:42.5.1")
+    implementation("mysql:mysql-connector-java:8.0.32")
 }
 
 
@@ -33,6 +34,9 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("223.*")
+        untilBuild.set("232.*")
+    }
+    buildSearchableOptions {
+        enabled = false
     }
 }

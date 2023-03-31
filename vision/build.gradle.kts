@@ -8,14 +8,14 @@ plugins {
 }
 
 dependencies {
-    implementation("org.jetbrains:marketplace-zip-signer:0.1.8")
+//    implementation("org.jetbrains:marketplace-zip-signer:0.1.8")
 }
 
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.2.3")
+    version.set("2023.1")
     type.set("IC") // Target IDE Platform
     plugins.set(listOf(/* Plugin Dependencies */))
 }
@@ -32,20 +32,23 @@ tasks {
     buildSearchableOptions {
         enabled = false
     }
+    jarSearchableOptions {
+        enabled = false
+    }
 
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("223.*")
+        untilBuild.set("232.*")
     }
 
-    signPlugin {
-        certificateChainFile.set(File(System.getenv("CERTIFICATE_CHAIN")))
-        privateKeyFile.set(File(System.getenv("PRIVATE_KEY")))
-        cliPath.set("/usr/local/lib/marketplace-zip-signer-cli.jar")
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
-    }
+//    signPlugin {
+//        certificateChainFile.set(File(System.getenv("CERTIFICATE_CHAIN")))
+//        privateKeyFile.set(File(System.getenv("PRIVATE_KEY")))
+//        cliPath.set("/usr/local/lib/marketplace-zip-signer-cli.jar")
+//    }
+//
+//    publishPlugin {
+//        token.set(System.getenv("PUBLISH_TOKEN"))
+//    }
 }

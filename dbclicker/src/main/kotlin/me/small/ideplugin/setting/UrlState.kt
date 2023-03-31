@@ -34,6 +34,7 @@ class UrlState : PersistentStateComponent<UrlState> {
 
     fun updateDb(callback: () -> Unit) {
         DriverManager.registerDriver(org.postgresql.Driver())
+        DriverManager.registerDriver(com.mysql.jdbc.Driver())
         Thread {
             try {
                 val res: HashMap<String, ArrayList<String>> = HashMap()
