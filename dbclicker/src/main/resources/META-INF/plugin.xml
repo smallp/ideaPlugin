@@ -13,7 +13,7 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[Work with jooq or without. A tree view to see the struct of your database. Now only support mysql and postgresql. With jooq, you can db click the field to add it into editor.<br><br>和hela一起用，点一下就可以添加字段，妈妈再也不用担心select的字段太多了
+    <description><![CDATA[Work with jooq or without. It displays a tree view to see the struct of your database after setting the db connect info in the setting. Now only support mysql and postgresql. With jooq, you can double-click the field to add the field name into editor.<br><br>和hela一起用，点一下就可以添加字段，妈妈再也不用担心select的字段太多了
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.

@@ -68,7 +68,7 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
             } else return
 
             val project: Project = toolWindow.project
-            val editor: Editor = FileEditorManagerEx.getInstance(project).selectedTextEditor ?: return
+            val editor: Editor = FileEditorManagerEx.getInstanceEx(project).selectedTextEditor ?: return
             val document: Document = editor.document
             val start = editor.caretModel.primaryCaret.selectionStart
             WriteCommandAction.runWriteCommandAction(
