@@ -14,7 +14,7 @@ class DBToolWindowFactory : ToolWindowFactory {
         toolWindow.contentManager.addContent(content)
     }
 
-    override fun isApplicable(project: Project): Boolean {
+    override suspend fun isApplicableAsync(project: Project): Boolean {
         val setting = UrlState.getInstance(project)
         return setting.url.isNotEmpty()
     }

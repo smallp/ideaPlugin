@@ -16,7 +16,7 @@ class DBToolWindowFactory : ToolWindowFactory {
         toolWindow.contentManager.addContent(content)
     }
 
-    override fun isApplicable(project: Project): Boolean {
+    override suspend fun isApplicableAsync(project: Project): Boolean {
         info = VisionInfo(project)
         return info.haveFile()
     }
