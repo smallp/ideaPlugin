@@ -1,5 +1,5 @@
 group = "me.small"
-version = "1.1.2"
+version = "1.1.3"
 
 plugins {
     id("java")
