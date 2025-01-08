@@ -13,6 +13,7 @@ class UrlConfigurable(private val poj: Project) : Configurable {
         component!!.name = ori.user
         component!!.pwd = ori.pwd
         component!!.url = ori.url
+        component!!.prefix = ori.prefix
         return component!!.panel
     }
 

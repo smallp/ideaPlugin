@@ -12,6 +12,7 @@ class UrlComponent {
     private val _name: JBTextField = JBTextField()
     private val _pwd: JBTextField = JBTextField()
     private val _url: JBTextField = JBTextField()
+    private val _prefix: JBTextField = JBTextField()
     var name: String
         get() {
             return _name.text
@@ -33,6 +34,13 @@ class UrlComponent {
         set(value) {
             _url.text = value
         }
+    var prefix: String
+        get() {
+            return _prefix.text
+        }
+        set(value) {
+            _prefix.text = value
+        }
 
     val panel: JComponent
         get() = _panel
@@ -42,6 +50,7 @@ class UrlComponent {
             .addLabeledComponent(JBLabel("Enter db url: "), _url, 1, false)
             .addLabeledComponent(JBLabel("Enter user name: "), _name, 1, false)
             .addLabeledComponent(JBLabel("Enter password: "), _pwd, 1, false)
+            .addLabeledComponent(JBLabel("Prefix: "), _prefix, 1, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }

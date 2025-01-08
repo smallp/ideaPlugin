@@ -13,6 +13,7 @@ class UrlState : PersistentStateComponent<UrlState> {
     var url: String = ""
     var user: String = ""
     var pwd: String = ""
+    var prefix: String = ""
     var dbInfo: HashMap<String, ArrayList<String>> = HashMap()
 
     companion object {
@@ -42,7 +43,7 @@ class UrlState : PersistentStateComponent<UrlState> {
                 val info = con.metaData.getTables(null, null, null, arrayOf("TABLE"))
                 while (info.next()) {
                     val table = info.getString(3)
-                    if (table.startsWith("flywaylite")) continue
+                    if (table.startsWith("flyway")) continue
                     val tableName = info.getString(3) + " " + info.getString(5)
                     val column = con.metaData.getColumns(null, null, table, null)
                     val columns = ArrayList<String>()

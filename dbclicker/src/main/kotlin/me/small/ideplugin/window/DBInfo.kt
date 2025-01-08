@@ -60,11 +60,11 @@ class DBInfo(private val toolWindow: ToolWindow) : MouseListener {
                 var col = res[2].toString()
                 table = table.split(" ")[0].uppercase()
                 col = col.split(" ")[0].uppercase()
-                str = "T_${table}.${col},"
+                str = set.prefix+"${table}.${col},"
             } else if (res.size == 2) {
                 var table = res[1].toString()
                 table = table.split(" ")[0].uppercase()
-                str = "T_${table}"
+                str = set.prefix+ table
             } else return
 
             val project: Project = toolWindow.project

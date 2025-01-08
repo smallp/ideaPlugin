@@ -3,7 +3,7 @@ version = "1.1.1"
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.20"
+    id("org.jetbrains.kotlin.jvm") version "1.9.25"
     id("org.jetbrains.intellij.platform") version "2.1.0"
 }
 
