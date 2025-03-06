@@ -19,6 +19,7 @@ class VisionInfo(private val project: Project) {
 
         val fold = File(project.basePath, "gradle/catalogs")
         fold.listFiles()?.forEach { file ->
+            if (!file.name.endsWith(".toml")) return@forEach
             val filename = file.name.split(".")[0]
             val data = HashMap<String, InfoPO>()
             var name = ""
