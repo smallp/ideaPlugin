@@ -19,7 +19,7 @@ class UrlConfigurable(private val poj: Project) : Configurable {
 
     override fun isModified(): Boolean {
         val ori = UrlState.getInstance(poj)
-        return ori.user != component!!.name || ori.pwd != component!!.pwd || ori.url != component!!.url
+        return ori.user != component!!.name || ori.pwd != component!!.pwd || ori.url != component!!.url|| ori.prefix != component!!.prefix
     }
 
     override fun apply() {
@@ -27,6 +27,7 @@ class UrlConfigurable(private val poj: Project) : Configurable {
         ori.user = component!!.name
         ori.pwd = component!!.pwd
         ori.url = component!!.url
+        ori.prefix=component!!.prefix
     }
 
     override fun getDisplayName(): String {
@@ -42,6 +43,7 @@ class UrlConfigurable(private val poj: Project) : Configurable {
         component!!.name = ori.user
         component!!.pwd = ori.pwd
         component!!.url = ori.url
+        component!!.prefix=""
     }
 
     override fun disposeUIResources() {

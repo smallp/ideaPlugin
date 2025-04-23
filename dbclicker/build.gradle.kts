@@ -1,10 +1,10 @@
 group = "me.small"
-version = "1.1.1"
+version = "1.1.2"
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij.platform") version "2.1.0"
+    id("org.jetbrains.kotlin.jvm") version "2.1.0"
+    id("org.jetbrains.intellij.platform") version "2.5.0"
 }
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
 intellijPlatform{
     pluginConfiguration{
         ideaVersion{
-            sinceBuild="241"
+            sinceBuild="251"
         }
     }
 }
